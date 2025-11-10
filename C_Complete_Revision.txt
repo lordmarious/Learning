@@ -1,0 +1,225 @@
+
+=============================
+🔥 C APTITUDE + CONCEPT REVISION NOTES (2025 EDITION)
+=============================
+
+Author: ChatGPT + You (Deep-dive learning sessions)
+
+--------------------------------------------
+🧩 1️⃣ FUNDAMENTALS — TYPES, VARIABLES, STORAGE CLASSES
+--------------------------------------------
+
+⚙️ Data Types
+char  → 1 byte
+int   → 4 bytes
+float → 4 bytes
+double→ 8 bytes
+
+⚙️ Storage Classes
+| Class     | Lifetime | Scope | Default | Notes |
+|------------|-----------|--------|----------|--------|
+| auto       | block     | local  | garbage  | default local |
+| register   | block     | local  | garbage  | stored in CPU register |
+| static     | program   | local/global | 0 | retains value |
+| extern     | program   | global | 0 | links to external var |
+
+Tips:
+- extern only declares, not defines.
+- static persists between calls.
+
+--------------------------------------------
+🧩 2️⃣ POINTERS & ARRAYS
+--------------------------------------------
+
+Pointer basics:
+int a=10; int *p=&a; printf("%d", *p); // 10
+
+Pointer arithmetic:
+p+1 → next element
+p2 - p1 → element gap
+(char*)p2 - (char*)p1 → byte gap
+
+Example:
+int arr[]={10,20,30,40,50};
+int *p1=arr, *p2=arr+4;
+printf("%d", p2-p1); //4
+printf("%d",(char*)p2-(char*)p1); //16 bytes
+
+Pre/Post increment:
+*ptr++ → use then move
+*++ptr → move then use
+(*ptr)++ → increment value
+
+Array-pointer equivalence:
+arr[i] == *(arr+i) == i[arr]
+
+--------------------------------------------
+🧩 3️⃣ OPERATORS & EXPRESSIONS
+--------------------------------------------
+
+Comma operator:
+(a,b) → evaluates both, returns last
+
+Ternary:
+cond ? expr1 : expr2
+
+Undefined behavior:
+++i + ++i; 
+printf("%d %d", i, i++);
+x = ++i + ++i + ++i;
+
+sizeof:
+Compile-time, no side effects
+sizeof(++a + b); → doesn’t increment a
+
+--------------------------------------------
+🧩 4️⃣ STRINGS & POINTER TRICKS
+--------------------------------------------
+
+char *p="hello"; // points to literal
+char s[]="hello"; // array copy (modifiable)
+
+Pointer arithmetic:
+"Geeks for Geeks"+6 → "for Geeks"
+
+String skip:
+"abcdef"+2 → "cdef"
+
+--------------------------------------------
+🧩 5️⃣ FUNCTIONS & BEHAVIOR
+--------------------------------------------
+
+Static inside function:
+static int x=5; retains value.
+
+Extern:
+extern int var; → global link
+
+printf():
+returns number of chars printed.
+
+scanf():
+returns successful input count.
+
+--------------------------------------------
+🧩 6️⃣ CONTROL STATEMENTS
+--------------------------------------------
+
+Empty for loop:
+for(k=0.0;k<3.0;k++); → prints 3.0
+
+Switch:
+Fallthrough without break.
+
+Goto:
+Label must be in same function.
+
+--------------------------------------------
+🧩 7️⃣ STRUCT, UNION, ENUM
+--------------------------------------------
+
+Structure:
+sum of all members + padding
+
+Union:
+size of largest member
+
+Enum:
+auto-increment unless specified
+
+--------------------------------------------
+🧩 8️⃣ POINTER ADVANCED EXAMPLES
+--------------------------------------------
+
+Function pointer movement:
+void test(char c[]){
+ c=c+2; c--; printf("%c",*c);
+}
+char ch[]={'p','o','u','r'};
+test(ch); // o
+
+(buf+1)[5] == buf[6]
+
+--------------------------------------------
+🧩 9️⃣ SPECIAL CASES
+--------------------------------------------
+
+Octal: 010 → 8 decimal
+Hex: 0xA → 10 decimal
+
+printf("%d",(1,2,3)); → 3
+
+register int i;
+scanf("%d",&i); // invalid
+
+sizeof with expression: no side effect.
+
+--------------------------------------------
+🧩 🔟 QUICK RECAP CHEATS
+--------------------------------------------
+
+Pointers:
+*(p+n)==p[n]==n[p]
+Strings:
+"hello"+2=="llo"
+sizeof:
+Type-based, no evaluation
+Static:
+Retains value
+Extern:
+Global link
+Union:
+Largest member size
+printf():
+Returns printed char count
+scanf():
+Returns success count
+Comma:
+Returns rightmost value
+Undefined:
+Never modify same var twice
+
+--------------------------------------------
+⚡ MEMORY BOOST FORMULA SHEET
+--------------------------------------------
+1. sizeof doesn’t execute ++
+2. "string"+n → substring
+3. i[arr]==arr[i]
+4. printf returns char count
+5. scanf returns input count
+6. static persists between calls
+7. extern links to global var
+8. pointer arithmetic → element-based
+9. struct adds padding
+10. union largest member defines size
+11. ++ and -- never mix in one line
+12. switch fallthrough without break
+
+--------------------------------------------
+✅ FINAL TAKEAWAYS
+--------------------------------------------
+✔ sizeof is compile-time, safe.
+✔ Don’t modify same variable twice.
+✔ Use %p for pointers.
+✔ Array decays to pointer in function.
+✔ String literals are read-only.
+✔ printf/scanf return useful values.
+✔ static persists; extern connects.
+✔ Comma returns last expression.
+✔ Keep one increment per line.
+✔ Understand pointer arithmetic deeply.
+
+--------------------------------------------
+🧠 Practice Output Predicting Questions
+--------------------------------------------
+1. printf("%s",6+"Geeks for Geeks"); → "for Geeks"
+2. printf("%c",*p++); → first char then move
+3. printf("%d",sizeof(++a+b)); → sizeof(float)=4
+4. switch(2) { case 2: printf("B"); } → B
+5. union with int[34] → 136 bytes (if int=4)
+6. printf("%d",(1,2,3)); → 3
+7. printf("%x",-1<<1); → fffffffe
+
+--------------------------------------------
+🚀 Use this sheet for final C aptitude prep!
+--------------------------------------------

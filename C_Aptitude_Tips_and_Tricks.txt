@@ -1,0 +1,149 @@
+C APTITUDE MASTER SUMMARY — Questions, Concepts & Tricks
+
+1️⃣ Loop decrement and print pattern
+-----------------------------------
+Code:
+for (n = 7; n != 0; n--) printf("n = %d", n--);
+Trick: post-decrement happens twice.
+Output: 7, 5, 3, 1
+
+2️⃣ Bitwise left shift with negative number
+-------------------------------------------
+printf("%x", -1 << 1);
+Trick: -1 = 0xFFFFFFFF (32-bit); shift → 0xFFFFFFFE.
+Output: fffffffe
+
+3️⃣ Macro without parentheses
+------------------------------
+#define prod(a,b) a*b
+printf("%d", prod(x+2,y-1));
+Trick: expands to x+2*y-1 → wrong precedence.
+Output: 10
+Fix: #define prod(a,b) ((a)*(b))
+
+4️⃣ Static variable recursion
+------------------------------
+static int i=5; if(--i){main(); printf("%d ",i);}
+Trick: Static persists across calls.
+Output: 0 0 0 0
+
+5️⃣ scanf return value
+-----------------------
+scanf("%d",&x);
+printf("%d", scanf("%d",&x));
+Trick: scanf returns number of successful reads.
+Output: 1
+
+6️⃣ Unsigned overflow
+----------------------
+unsigned int i=65000; while(i++!=0); printf("%u",i);
+Trick: Wrap-around → next value = 1.
+Output: 1
+
+7️⃣ signed char overflow
+-------------------------
+signed char i=0; for(;i>=0;i++); printf("%d",i);
+Range: -128 to 127.
+Output: -128
+
+8️⃣ Function call argument order
+--------------------------------
+f(i++,i++,i++);
+Order unspecified → undefined behavior.
+Outputs: 10 11 12 13 OR 12 11 10 13.
+
+9️⃣ Calling convention (pascal vs cdecl)
+----------------------------------------
+Pascal → Left to Right, Cdecl → Right to Left
+Outputs:
+10 11 12 13
+12 11 10 13
+
+🔟 Pointer arithmetic increment
+--------------------------------
+++*ptr++;
+Trick: Increment value, then move pointer.
+Output: modified string ("hffltgpshfflt")
+
+11️⃣ Label inside another function
+----------------------------------
+goto inside_foo; // invalid across functions
+Trick: Labels local to same function.
+
+12️⃣ printf field width
+------------------------
+printf("%*d",x,p);
+Trick: Dynamic width; x=5 → "   10"
+Output:    10
+
+13️⃣ Pointer vs array address
+-----------------------------
+if(&p == (char*)&arr) printf("Same");
+Output: Not same
+
+14️⃣ sizeof pointer vs array
+-----------------------------
+char arr[]={1,2,3}; char *p=arr;
+sizeof(p)=8, sizeof(arr)=3
+Output: 8 3
+
+15️⃣ Shadowed global variable
+------------------------------
+int x=0; int f(){return x;} int g(){int x=1;return f();}
+Trick: f() sees global variable.
+Output: 0
+
+16️⃣ Shift operators in printf
+-------------------------------
+printf("%d %d %d",c,c<<=2,c>>=2);
+Trick: modifies same var → undefined.
+Possible: 5 20 5 OR 4 4 1
+
+17️⃣ Array decay in sizeof
+---------------------------
+Inside func, array decays → pointer.
+Output: 8 (64-bit), not 3.
+
+18️⃣ Pointer vs pointer-to-const
+--------------------------------
+void fun(const char **p); fun(argv);
+Trick: char** → const char** invalid.
+Fix: fun(char * const *p)
+
+19️⃣ Pointer arithmetic simplification
+--------------------------------------
+*a+1-*a+3 = 4 (cancel same terms)
+Output: 4
+
+20️⃣ String pointer equivalence
+-------------------------------
+str[i] == *(str+i) == *(i+str) == i[str]
+Output:
+gggg
+eeee
+kkkk
+ssss ...
+
+21️⃣ signed vs unsigned wrap-up
+--------------------------------
+signed overflow → undefined
+unsigned overflow → wraps to 0
+
+22️⃣ sizeof in summary
+-----------------------
+sizeof(pointer) = 4/8 bytes
+sizeof(array) = N * sizeof(type)
+
+Golden Rules
+-------------
+1. Never modify/read same variable in one expression.
+2. Use parentheses in macros.
+3. Arrays decay to pointers (except in sizeof or &).
+4. Unsigned wraps; signed overflows undefined.
+5. Function argument order unspecified.
+6. Static persists; locals reset.
+7. Pointer size fixed, array size dynamic.
+8. goto valid only inside same function.
+9. const correctness: char** != const char**.
+10. i[arr] == arr[i].
+
