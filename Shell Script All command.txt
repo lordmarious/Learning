@@ -1,0 +1,74 @@
+Shell Script All command
+cd -> change Directory
+cd .. -> go to parent
+touch(touch sample.txt) -> create file
+vim(vim sample.txt) -> create and open file
+mkdir -> create directory or folder
+rmdir -> remove directory or folder
+rm {path} -> remove file
+ls -> list the items
+ls -l -> list the items with details
+cp -> copy a file [cp source destination]
+echo -> print in console
+cat -> get the data from the file and print
+mv -> move file or folder [mv source destination]
+history -> display the history of commads
+clear -> clear the console
+">" -> used to write in a file overwrite
+">>" -> used to append input in a file
+alias -> used to create a shortcut [alias ll='ls -la']
+unalias -> use to remove alias
+pwd -> print workind directory
+ipconfig/ifconfig -> for ipaddress
+ping ->Check connectivity to a host
+hostname -> print the machine name
+curl -> used to make a network request
+wget -> Download files from web [wget https://example.com/file.zip]
+ssh -> used to connect to another system or host
+
+
+
+Shibang -> #!/bin/bash
+Bash scripts start with a shebang. Shebang is a combination of bash # and bang ! followed by the bash shell path.
+This is the first line of the script.Shebang tells the shell to execute it via bash shell
+
+example shell scipt
+script-1
+#!/bin/bash
+name="Ram"
+echo "$name"
+echo "enter the password"
+read password
+if [password -eq "12345" ];
+then
+echo "Hi Ramkumar"
+else
+echo "unknown user"
+fi
+
+script-2
+#!/bin/bash
+for color in red green blue
+do
+  echo "Color: $color"
+done
+
+script-3
+#!/bin/bash
+for (( i=1; i<=5; i++ ))
+do
+  echo "Number: $i"
+done
+
+script-4
+#!/bin/bash
+count=1
+while [ $count -le 5 ]
+do
+  echo "Count: $count"
+  ((count++))
+done
+
+
+
+
